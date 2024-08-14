@@ -1,0 +1,42 @@
+# Define GraphQL types for each of your models
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    roleId: ID!
+    note: String
+}
+
+type Role {
+    id: ID!
+    name: String!
+    description: String
+}
+
+type Department {
+    id: ID!
+    name: String!
+    description: String
+}
+
+type DepartmentUser {
+    id: ID!
+    user: User!
+    department: Department!
+}
+
+# Define the queries your API will respond to
+type Query {
+    findAllUsers: [User]
+    findAllRoles: [Role]
+    findAllDepartments: [Department]
+    findAllDepartmentUsers: [DepartmentUser]
+}
+
+# Define the mutations for creating or modifying data
+type Mutation {
+    createUser(name: String!, email: String!, roleId: ID!, note: String): User
+    createRole(name: String!, description: String): Role
+    createDepartment(name: String!, description: String): Department
+    assignUserToDepartment(userId: ID!, departmentId: ID!): DepartmentUser
+}
